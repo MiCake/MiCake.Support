@@ -37,6 +37,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiCake.SqlReader", "src\cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiCake.Identity.Authentication.JwtToken.Tests", "src\tests\MiCake.Identity.Authentication.JwtToken.Tests\MiCake.Identity.Authentication.JwtToken.Tests.csproj", "{DADE75A0-E9AD-45B3-983E-6F6F2155662F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiCake.AspNetCore.Start", "src\core\MiCake.AspNetCore.Start\MiCake.AspNetCore.Start.csproj", "{70041A36-4554-4E00-A73D-9CE8F9DDDF90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{9932E0FB-0C9E-48C0-BC35-866344C0AA96}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp", "samples\TodoApp\TodoApp.csproj", "{A4AB6165-2300-454A-8760-3FF43A1CA91D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +89,14 @@ Global
 		{DADE75A0-E9AD-45B3-983E-6F6F2155662F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DADE75A0-E9AD-45B3-983E-6F6F2155662F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DADE75A0-E9AD-45B3-983E-6F6F2155662F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70041A36-4554-4E00-A73D-9CE8F9DDDF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70041A36-4554-4E00-A73D-9CE8F9DDDF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70041A36-4554-4E00-A73D-9CE8F9DDDF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70041A36-4554-4E00-A73D-9CE8F9DDDF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AB6165-2300-454A-8760-3FF43A1CA91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AB6165-2300-454A-8760-3FF43A1CA91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AB6165-2300-454A-8760-3FF43A1CA91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AB6165-2300-454A-8760-3FF43A1CA91D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +112,8 @@ Global
 		{80FC0E40-C1F3-4643-A14D-343A8BF2DA66} = {DD51C453-21A0-4639-9163-4EBF895F4546}
 		{3AA23E35-512C-473B-86E0-3527B1F3614E} = {DD51C453-21A0-4639-9163-4EBF895F4546}
 		{DADE75A0-E9AD-45B3-983E-6F6F2155662F} = {8E61693E-3165-470C-99F4-E0A9BAB8BCC3}
+		{70041A36-4554-4E00-A73D-9CE8F9DDDF90} = {DD51C453-21A0-4639-9163-4EBF895F4546}
+		{A4AB6165-2300-454A-8760-3FF43A1CA91D} = {9932E0FB-0C9E-48C0-BC35-866344C0AA96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C31E5600-E4DC-4009-A5F6-E5250C8085F4}
