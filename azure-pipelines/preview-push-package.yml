@@ -1,0 +1,67 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+trigger:
+ branches:
+   include:
+     - releases/preview*
+
+variables:
+  solution: '**/*.sln'
+  buildConfiguration: 'Release'
+
+parameters:
+  - name: buildProject
+    displayName: 'Please select the project you want to build'
+    type: string
+    values:
+    - MiCake.AspNetCore.Start
+    - MiCake.AutoMapper
+    - MiCake.Dapper
+    - MiCake.DDD.CQS
+    - MiCake.Identity.Authentication.JwtToken
+    - MiCake.MessageBus
+    - MiCake.SQLReader
+    - All
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Set current .NET version to $(dotnet_version)'
+  inputs:
+    packageType: 'sdk'
+    version: '$(dotnet_version)'
+
+- ${{ if eq(parameters.buildProject, 'All') }}:
+  - task: DotNetCoreCLI@2
+    displayName: 'Package All project to nuget.'
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(Build.SourcesDirectory)/src/framework/**/*.csproj'
+      versioningScheme: 'byPrereleaseNumber'
+      majorVersion: '$(nuget_version_major)'
+      minorVersion: '$(nuget_version_minor)'
+      patchVersion: '$(nuget_version_patch)'
+
+- ${{ else }}:
+  - task: DotNetCoreCLI@2
+    displayName: 'Package ${{ parameters.buildProject }} project to nuget.'
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(Build.SourcesDirectory)/src/framework/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
+      versioningScheme: 'byPrereleaseNumber'
+      majorVersion: '$(nuget_version_major)'
+      minorVersion: '$(nuget_version_minor)'
+      patchVersion: '$(nuget_version_patch)'
+
+- task: NuGetCommand@2
+  displayName: 'Push nuget packages to nuget.org'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'MiCake_NuGet_Key'
