@@ -15,6 +15,18 @@ parameters:
     displayName: 'Do you wanna push package to nuget.org? (please make sure your version settings are correct)'
     type: boolean
     default: false
+  - name: pushProject
+    displayName: 'Please select the project you want to push'
+    type: string
+    values:
+    - MiCake.AspNetCore.Start
+    - MiCake.AutoMapper
+    - MiCake.Dapper
+    - MiCake.DDD.CQS
+    - MiCake.Identity.Authentication.JwtToken
+    - MiCake.MessageBus
+    - MiCake.SQLReader
+    - All
 
 steps:
 - task: UseDotNet@2
@@ -57,23 +69,23 @@ steps:
 
 # Push package to nuget
 - ${{ if eq(parameters.pushPackageToNuget, true) }}:
-  - ${{ if eq(parameters.pushSupportLibraries, true) }}:
+  - ${{ if eq(parameters.buildProject, 'All') }}:
     - task: DotNetCoreCLI@2
-      displayName: 'Package All project(Core + Support) to nuget.'
+      displayName: 'Package All project to nuget.'
       inputs:
         command: 'pack'
-        packagesToPack: '$(Build.SourcesDirectory)/src/framework/**/*.csproj'
+        packagesToPack: '$(Build.SourcesDirectory)/src/**/*.csproj'
         nobuild: true
         includesymbols: true
         includesource: true
         versioningScheme: 'off'
 
-  - ${{ if eq(parameters.pushSupportLibraries, false) }}:
+  - ${{ else }}:
     - task: DotNetCoreCLI@2
-      displayName: 'Package Core project to nuget.'
+      displayName: 'Package ${{ parameters.buildProject }} project to nuget.'
       inputs:
         command: 'pack'
-        packagesToPack: '$(Build.SourcesDirectory)/src/framework/core/**/*.csproj'
+        packagesToPack: '$(Build.SourcesDirectory)/src/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
         nobuild: true
         includesymbols: true
         includesource: true
