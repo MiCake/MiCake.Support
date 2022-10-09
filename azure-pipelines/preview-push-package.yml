@@ -48,6 +48,7 @@ steps:
       patchVersion: '$(nuget_version_patch)'
 
 - ${{ else }}:
+  - script: echo '$(Build.SourcesDirectory)/src/framework/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'Package ${{ parameters.buildProject }} project to nuget.'
     inputs:
