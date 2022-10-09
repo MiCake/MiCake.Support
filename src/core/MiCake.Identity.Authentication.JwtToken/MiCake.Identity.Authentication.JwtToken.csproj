@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>MiCake's implementation support for JWT.</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MiCake.Identity" Version="0.7.0-CI-20221009-071004" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<!--In order to unit test-->
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>MiCake.Identity.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+</Project>
