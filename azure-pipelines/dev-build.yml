@@ -7,6 +7,11 @@
 pool:
   vmImage: 'ubuntu-latest'
 
+trigger:
+ branches:
+   include:
+     - dev
+
 variables:
   solution: '**/*.sln'
   buildConfiguration: 'Release'
