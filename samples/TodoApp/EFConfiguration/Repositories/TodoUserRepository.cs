@@ -5,7 +5,7 @@ using TodoApp.Domain.Repositories.Identity;
 
 namespace TodoApp.EFConfiguration.Repositories
 {
-    public class TodoUserRepository : EFRepository<TodoAppContext, TodoUser>, ITodoUserRepository
+    public class TodoUserRepository : EFRepository<TodoAppContext, TodoUser, int>, ITodoUserRepository
     {
         public TodoUserRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {

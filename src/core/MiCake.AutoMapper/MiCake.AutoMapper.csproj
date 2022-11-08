@@ -6,7 +6,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-		<PackageReference Include="MiCake.Core" Version="0.7.0-CI-20221009-071004" />
+		<PackageReference Include="MiCake.Core" Version="0.7.0-CI-20221107-094119" />
 	</ItemGroup>
 
 </Project>

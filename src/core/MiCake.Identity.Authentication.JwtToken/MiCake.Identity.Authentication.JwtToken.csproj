@@ -4,8 +4,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MiCake.Identity" Version="0.7.0-CI-20221009-071004" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
+		<PackageReference Include="MiCake.Identity" Version="0.7.0-CI-20221107-094119" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<!--In order to unit test-->

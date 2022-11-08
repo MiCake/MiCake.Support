@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MiCake.DDD.Domain" Version="0.7.0-CI-20221009-071004" />
+    <PackageReference Include="MiCake.DDD.Domain" Version="0.7.0-CI-20221107-094119" />
   </ItemGroup>
 
 </Project>

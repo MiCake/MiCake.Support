@@ -4,7 +4,7 @@ using TodoApp.Domain.Repositories.Todo;
 
 namespace TodoApp.EFConfiguration.Repositories
 {
-    public class TodoItemRepository : EFPaginationRepository<TodoAppContext, TodoItem>, ITodoItemRepository
+    public class TodoItemRepository : EFPaginationRepository<TodoAppContext, TodoItem, int>, ITodoItemRepository
     {
         public TodoItemRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
