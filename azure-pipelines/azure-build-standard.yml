@@ -31,7 +31,7 @@ parameters:
   - name: buildStartProject
     displayName: 'Do you want to build and push MiCake.AspNetCore.Start'
     type: boolean 
-    defalut: false
+    default: false
 
 steps:
 - task: UseDotNet@2
