@@ -18,7 +18,6 @@ parameters:
     - NONE
     - MiCake.AutoMapper
     - MiCake.Dapper
-    - MiCake.DDD.CQS
     - MiCake.Identity.Authentication.JwtToken
     - MiCake.MessageBus
     - MiCake.SQLReader
@@ -26,7 +25,7 @@ parameters:
   - name: buildStartProject
     displayName: 'Do you want to build and push MiCake.AspNetCore.Start'
     type: boolean 
-    defalut: false
+    default: false
   
 
 steps:
@@ -47,7 +46,7 @@ steps:
       minorVersion: '$(nuget_version_minor)'
       patchVersion: '$(nuget_version_patch)'
 - ${{ elseif eq(parameters.buildProject, 'NONE') }}:
-
+  - script: echo 'Not need to package support libraries.'
 - ${{ else }}:
   - script: echo '$(Build.SourcesDirectory)/src/framework/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
   - task: DotNetCoreCLI@2
@@ -60,7 +59,7 @@ steps:
       minorVersion: '$(nuget_version_minor)'
       patchVersion: '$(nuget_version_patch)'
 
-- ${{ if eq(parameters.buildStartProject) }}:
+- ${{ if eq(parameters.buildStartProject, true) }}:
   - task: DotNetCoreCLI@2
     displayName: 'Package MiCake.AspNetCore.Start project to nuget.'
     inputs:
