@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MiCake.AspNetCore" Version="0.7.0-CI-20221107-094119" />
-    <PackageReference Include="MiCake.Audit" Version="0.7.0-CI-20221107-094119" />
-    <PackageReference Include="MiCake.AutoMapper" Version="0.7.0-CI-20221009-071004" />
-    <PackageReference Include="MiCake.EntityFrameworkCore" Version="0.7.0-CI-20221107-094119" />
-    <PackageReference Include="MiCake.Identity.Authentication.JwtToken" Version="0.7.0-CI-20221009-102736" />
+    <PackageReference Include="MiCake.AspNetCore" Version="0.7.0-CI-20221118-032939" />
+    <PackageReference Include="MiCake.Audit" Version="0.7.0-CI-20221118-032939" />
+    <PackageReference Include="MiCake.AutoMapper" Version="0.7.0-CI-20221118-071344" />
+    <PackageReference Include="MiCake.EntityFrameworkCore" Version="0.7.0-CI-20221118-032939" />
+    <PackageReference Include="MiCake.Identity.Authentication.JwtToken" Version="0.7.0-CI-20221118-071344" />
   </ItemGroup>
 
 </Project>
