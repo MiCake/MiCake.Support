@@ -18,7 +18,6 @@ parameters:
     - NONE
     - MiCake.AutoMapper
     - MiCake.Dapper
-    - MiCake.DDD.CQS
     - MiCake.Identity.Authentication.JwtToken
     - MiCake.MessageBus
     - MiCake.SQLReader
