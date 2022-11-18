@@ -96,7 +96,7 @@ steps:
         includesource: true
         versioningScheme: 'off'
   
-  - ${{ if eq(parameters.buildStartProject) }}:
+  - ${{ if eq(parameters.buildStartProject, true) }}:
   - task: DotNetCoreCLI@2
     displayName: 'Package MiCake.AspNetCore.Start project to nuget.'
     inputs:

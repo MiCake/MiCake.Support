@@ -60,7 +60,7 @@ steps:
       minorVersion: '$(nuget_version_minor)'
       patchVersion: '$(nuget_version_patch)'
 
-- ${{ if eq(parameters.buildStartProject) }}:
+- ${{ if eq(parameters.buildStartProject, true) }}:
   - task: DotNetCoreCLI@2
     displayName: 'Package MiCake.AspNetCore.Start project to nuget.'
     inputs:
