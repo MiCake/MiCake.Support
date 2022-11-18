@@ -1,4 +1,5 @@
-﻿using TodoApp.Helper;
+﻿using MiCake.Core.Util;
+using TodoApp.Helper;
 
 namespace TodoApp.Domain.Aggregates.Identity
 {
@@ -26,7 +27,10 @@ namespace TodoApp.Domain.Aggregates.Identity
 
         public void ChangeUserName(string? firstName, string? lastName)
         {
-            Name = UserName.Create(firstName, lastName);
+            CheckValue.NotNullOrWhiteSpace(firstName, nameof(firstName));
+            CheckValue.NotNullOrWhiteSpace(lastName, nameof(lastName));
+
+            Name = UserName.Create(firstName!, lastName!);
         }
 
         public bool CheckPassword(string input)

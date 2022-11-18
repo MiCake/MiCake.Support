@@ -52,7 +52,7 @@ builder.Services.AddDbContext<TodoAppContext>(options =>
                 });
 
 // Get jwt config
-JwtConfigModel jwtConfig = builder.Configuration.GetSection("JwtConfig").Get<JwtConfigModel>();
+JwtConfigModel jwtConfig = builder.Configuration.GetSection("JwtConfig").Get<JwtConfigModel>()!;
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -70,7 +70,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddMiCakeServices<ToDoAppModule, TodoAppContext>()
                 .UseIdentity<int>()
                 .UseSqlReader(options => { options.UseXmlFileProvider(xmlOpt => { xmlOpt.FolderPath = "QueryReader//files"; }); })
-                .UseDapper(builder.Configuration.GetConnectionString("Postgres"))
+                .UseDapper(builder.Configuration.GetConnectionString("Postgres")!)
                 .UseJwt(options =>
                 {
                     options.AccessTokenLifetime = (uint)jwtConfig.AccessTokenLifetime;
