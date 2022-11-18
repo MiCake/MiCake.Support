@@ -84,6 +84,7 @@ steps:
         includesource: true
         versioningScheme: 'off'
   - ${{ elseif eq(parameters.buildProject, 'NONE') }}:
+    - script: echo 'Not need to package support libraries.'
   - ${{ else }}:
     - task: DotNetCoreCLI@2
       displayName: 'Package ${{ parameters.buildProject }} project to nuget.'

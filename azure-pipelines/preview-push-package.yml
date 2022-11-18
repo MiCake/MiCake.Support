@@ -46,7 +46,7 @@ steps:
       minorVersion: '$(nuget_version_minor)'
       patchVersion: '$(nuget_version_patch)'
 - ${{ elseif eq(parameters.buildProject, 'NONE') }}:
-
+  - script: echo 'Not need to package support libraries.'
 - ${{ else }}:
   - script: echo '$(Build.SourcesDirectory)/src/framework/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
   - task: DotNetCoreCLI@2
