@@ -15,7 +15,7 @@ parameters:
     displayName: 'Please select the project you want to build'
     type: string
     values:
-    - MiCake.AspNetCore.Start
+    - NONE
     - MiCake.AutoMapper
     - MiCake.Dapper
     - MiCake.DDD.CQS
@@ -23,6 +23,11 @@ parameters:
     - MiCake.MessageBus
     - MiCake.SQLReader
     - All
+  - name: buildStartProject
+    displayName: 'Do you want to build and push MiCake.AspNetCore.Start'
+    type: boolean 
+    defalut: false
+  
 
 steps:
 - task: UseDotNet@2
@@ -36,11 +41,12 @@ steps:
     displayName: 'Package All project to nuget.'
     inputs:
       command: 'pack'
-      packagesToPack: '$(Build.SourcesDirectory)/src/**/*.csproj'
+      packagesToPack: '$(Build.SourcesDirectory)/src/core/**/*.csproj'
       versioningScheme: 'byPrereleaseNumber'
       majorVersion: '$(nuget_version_major)'
       minorVersion: '$(nuget_version_minor)'
       patchVersion: '$(nuget_version_patch)'
+- ${{ elseif eq(parameters.buildProject, 'NONE') }}:
 
 - ${{ else }}:
   - script: echo '$(Build.SourcesDirectory)/src/framework/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
@@ -49,6 +55,17 @@ steps:
     inputs:
       command: 'pack'
       packagesToPack: '$(Build.SourcesDirectory)/src/core/${{ parameters.buildProject }}/${{ parameters.buildProject }}.csproj'
+      versioningScheme: 'byPrereleaseNumber'
+      majorVersion: '$(nuget_version_major)'
+      minorVersion: '$(nuget_version_minor)'
+      patchVersion: '$(nuget_version_patch)'
+
+- ${{ if eq(parameters.buildStartProject) }}:
+  - task: DotNetCoreCLI@2
+    displayName: 'Package MiCake.AspNetCore.Start project to nuget.'
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(Build.SourcesDirectory)/src/starter/**/*.csproj'
       versioningScheme: 'byPrereleaseNumber'
       majorVersion: '$(nuget_version_major)'
       minorVersion: '$(nuget_version_minor)'

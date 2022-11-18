@@ -19,6 +19,7 @@ parameters:
     displayName: 'Please select the project you want to push'
     type: string
     values:
+    - NONE
     - MiCake.AspNetCore.Start
     - MiCake.AutoMapper
     - MiCake.Dapper
@@ -27,6 +28,10 @@ parameters:
     - MiCake.MessageBus
     - MiCake.SQLReader
     - All
+  - name: buildStartProject
+    displayName: 'Do you want to build and push MiCake.AspNetCore.Start'
+    type: boolean 
+    defalut: false
 
 steps:
 - task: UseDotNet@2
@@ -74,12 +79,12 @@ steps:
       displayName: 'Package All project to nuget.'
       inputs:
         command: 'pack'
-        packagesToPack: '$(Build.SourcesDirectory)/src/**/*.csproj'
+        packagesToPack: '$(Build.SourcesDirectory)/src/core/**/*.csproj'
         nobuild: true
         includesymbols: true
         includesource: true
         versioningScheme: 'off'
-
+  - ${{ elseif eq(parameters.buildProject, 'NONE') }}:
   - ${{ else }}:
     - task: DotNetCoreCLI@2
       displayName: 'Package ${{ parameters.buildProject }} project to nuget.'
@@ -91,6 +96,17 @@ steps:
         includesource: true
         versioningScheme: 'off'
   
+  - ${{ if eq(parameters.buildStartProject) }}:
+  - task: DotNetCoreCLI@2
+    displayName: 'Package MiCake.AspNetCore.Start project to nuget.'
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(Build.SourcesDirectory)/src/starter/**/*.csproj'
+      versioningScheme: 'byPrereleaseNumber'
+      majorVersion: '$(nuget_version_major)'
+      minorVersion: '$(nuget_version_minor)'
+      patchVersion: '$(nuget_version_patch)'
+
   - task: NuGetCommand@2
     displayName: 'Push nuget packages to nuget.org'
     inputs:
