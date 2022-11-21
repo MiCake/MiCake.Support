@@ -24,6 +24,8 @@ namespace MiCake.Identity.Authentication.JwtToken
             var key = await _handleGenerator.GenerateHandle(refreshToken, cancellationToken);
             _store.TryAdd(key, refreshToken);
 
+            ScanForExpiredItems();
+
             return key;
         }
 
