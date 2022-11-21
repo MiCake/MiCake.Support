@@ -52,7 +52,7 @@ namespace MiCake.Identity.Authentication.JwtToken
             foreach (var (key, entry) in _store)
             {
                 var refreTokenLifetime = entry.GetExpireDateTime();
-                if (refreTokenLifetime > _clock.Now)
+                if (refreTokenLifetime < _clock.Now)
                 {
                     RemoveRefreshTokenAsync(key);
                 }
